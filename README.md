@@ -1,4 +1,4 @@
-# Frontend Motion Lab
+# Animation For The Win
 
 A collection of modern web animations recreated from scratch using Next.js, React, TypeScript, and GSAP.
 
