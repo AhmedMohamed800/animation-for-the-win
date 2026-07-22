@@ -30,7 +30,7 @@ export default function PolygonMorph() {
         foxRef.current,
         {
           opacity: 0,
-          ease: "power2.out",
+          ease: "power2.inOut",
           duration: 0.3,
         },
         "<",
@@ -49,7 +49,7 @@ export default function PolygonMorph() {
         pandaRef.current,
         {
           opacity: 0,
-          ease: "power2.out",
+          ease: "power2.inOut",
           duration: 0.3,
         },
         "<",
@@ -68,7 +68,7 @@ export default function PolygonMorph() {
         foxRef.current,
         {
           opacity: 1,
-          ease: "power2.out",
+          ease: "power2.inOut",
           duration: 0.3,
         },
         "<",
