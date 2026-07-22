@@ -94,6 +94,7 @@ export default function PolygonMorph() {
           alt="fox"
           width={0}
           height={0}
+          priority
           className=" absolute inset-0 z-3"
           sizes="100vw"
           style={{ width: "100%", height: "100%" }}
@@ -104,6 +105,7 @@ export default function PolygonMorph() {
           alt="panda"
           width={0}
           height={0}
+          priority
           className=" absolute inset-0 z-2"
           sizes="100vw"
           style={{ width: "100%", height: "100%" }}
@@ -114,6 +116,7 @@ export default function PolygonMorph() {
           alt="goose"
           width={0}
           height={0}
+          priority
           className=" absolute inset-0 z-1"
           sizes="100vw"
           style={{ width: "100%", height: "100%" }}
