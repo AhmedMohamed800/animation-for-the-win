@@ -42,7 +42,7 @@ export default function PolygonMorph() {
           ease: "power1.inOut",
 
           clipPath:
-            "polygon(100% 0%, 87% 74%, 82% 100%, 52% 100%, 0% 65%, 0% 47%, 48% 0%)",
+            "polygon(100% 38%, 100% 54%, 68% 100%, 36% 99%, 0% 17%, 0% 0%, 36% 0%)",
         },
         "+=2",
       ).to(
@@ -68,7 +68,7 @@ export default function PolygonMorph() {
         foxRef.current,
         {
           opacity: 1,
-          ease: "power2.inOut",
+          ease: "power2.out",
           duration: 0.3,
         },
         "<",
