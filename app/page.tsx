@@ -7,12 +7,18 @@ export default function Home() {
         You can view the animations that I created Here
       </h1>
 
-      <div className="flex mt-4">
+      <div className="flex mt-4 gap-4">
         <Link
           href="/animations/polygon-morph"
-          className="border border-white px-4 py-2 hover:opacity-90"
+          className="border border-foreground px-4 py-2 hover:opacity-90"
         >
           Polygon Morph
+        </Link>
+        <Link
+          href="/animations/rect-mask"
+          className="border border-foreground px-4 py-2 hover:opacity-90"
+        >
+          Rectangle Mask
         </Link>
       </div>
     </div>
