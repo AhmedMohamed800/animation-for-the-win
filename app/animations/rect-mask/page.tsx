@@ -10,8 +10,16 @@ export default function RectMask() {
   const [width, setWidth] = useState<number>(100);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
-    setPositionX(event.clientX);
-    event.preventDefault();
+    const x = event.clientX;
+    const maxX = window.innerWidth - 50;
+
+    if (x <= 50) {
+      setPositionX(50);
+    } else if (x >= maxX) {
+      setPositionX(maxX);
+    } else {
+      setPositionX(x);
+    }
   };
 
   const handleMosueLeave = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -32,7 +40,7 @@ export default function RectMask() {
       onMouseEnter={handleMosueEnter}
     >
       <div
-        className=" absolute top-0 h-screen bg-foreground opacity-90 transition-width-rect-mask"
+        className=" absolute top-0 h-screen bg-white opacity-90 transition-width-rect-mask "
         style={{
           mixBlendMode: "difference",
           left: `${positionX}px`,
@@ -41,12 +49,12 @@ export default function RectMask() {
         }}
       ></div>
 
-      <header className="flex justify-between py-4 border-foreground border-b text-[18px]">
+      <header className=" flex justify-between py-4 border-foreground border-b text-[18px]">
         <h2 className="">Animation For The Win</h2>
 
         <p>Nice!</p>
       </header>
-      <main className="flex flex-col justify-center  h-full flex-1 gap-8 ">
+      <main className=" flex flex-col justify-center  h-full flex-1 gap-8 ">
         <p className="flex gap-4 text-[18px]">
           <span className="text-red-500">01</span> <span>/</span>{" "}
           <span>Signal</span>
