@@ -21,6 +21,9 @@ export default function RectMask() {
   }, []);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (width === 1) {
+      setWidth(100);
+    }
     const x = Math.max(50, Math.min(event.clientX, window.innerWidth - 50));
 
     xTo.current?.(x);
