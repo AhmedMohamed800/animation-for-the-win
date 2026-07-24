@@ -28,3 +28,7 @@ body {
 .transition-width-rect-mask {
   transition: width 0.2s ease-out;
 }
+
+.transition-story-timeline {
+  transition: opacity 0.4s ease-out;
+}

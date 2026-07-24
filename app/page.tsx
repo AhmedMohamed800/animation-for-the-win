@@ -20,6 +20,13 @@ export default function Home() {
         >
           Rectangle Mask
         </Link>
+
+        <Link
+          href="/animations/story-timeline"
+          className="border border-foreground px-4 py-2 hover:opacity-90"
+        >
+          Story Timeline
+        </Link>
       </div>
     </div>
   );
