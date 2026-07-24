@@ -10,7 +10,12 @@ gsap.registerPlugin(useGSAP, Observer);
 
 export default function StotyTimeline() {
   const container = useRef<HTMLDivElement | null>(null);
+  const svgRef = useRef<SVGSVGElement | null>(null);
+  const pathRef = useRef<SVGPathElement | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const baseYRef = useRef(0);
+  const dotOffsetsRef = useRef<number[]>([]);
+  const dotElsRef = useRef<HTMLElement[]>([]);
 
   const items = [
     {
@@ -88,35 +93,83 @@ export default function StotyTimeline() {
       if (!container.current) return;
 
       const boxes = gsap.utils.toArray<HTMLElement>(container.current.children);
-
-      loopRef.current = horizontalLoop(boxes, {
-        paused: true,
-      });
+      loopRef.current = horizontalLoop(boxes, { paused: true });
 
       const radius = 1200;
 
-      gsap.ticker.add(updateArc);
+      const measureDots = () => {
+        dotElsRef.current = boxes.map(
+          (box) => box.querySelector(".dot") as HTMLElement,
+        );
+        dotOffsetsRef.current = dotElsRef.current.map(
+          (dotEl) => dotEl.offsetTop + dotEl.offsetHeight / 2,
+        );
+      };
 
+      const measureBaseY = () => {
+        const containerRect = container.current!.getBoundingClientRect();
+        const boxEl = boxes[0];
+        const dotEl = boxEl.querySelector(".dot") as HTMLElement;
+        baseYRef.current =
+          containerRect.top +
+          boxEl.offsetTop +
+          dotEl.offsetTop +
+          dotEl.offsetHeight / 2;
+      };
+
+      measureDots();
+      measureBaseY();
+      window.addEventListener("resize", measureBaseY);
+      window.addEventListener("resize", measureDots);
+
+      gsap.ticker.add(updateArc);
       function updateArc() {
         const center = window.innerWidth / 2;
 
-        boxes.forEach((box) => {
-          const rect = box.getBoundingClientRect();
+        boxes.forEach((box, i) => {
+          const dotEl = dotElsRef.current[i];
+          const dotRect = dotEl.getBoundingClientRect();
+          const dotCenterX = dotRect.left + dotRect.width / 2; // dot's real x, not box's
 
-          const dx = rect.left + rect.width / 2 - center;
-
-          const x = gsap.utils.clamp(-radius + 1, radius - 1, dx);
-
-          const y = radius - Math.sqrt(radius * radius - x * x);
-
-          const rotation = (x / radius) * 35;
+          const dx = gsap.utils.clamp(
+            -radius + 1,
+            radius - 1,
+            dotCenterX - center,
+          );
+          const y = radius - Math.sqrt(radius * radius - dx * dx);
+          const rotation = (dx / radius) * 35;
+          const pivotY = dotOffsetsRef.current[i];
 
           gsap.set(box, {
             y,
             rotation,
-            transformOrigin: "center center",
+            transformOrigin: `50% ${pivotY}px`,
           });
         });
+
+        updateArcPath(baseYRef.current);
+      }
+
+      function updateArcPath(baseY: number) {
+        if (!pathRef.current || !svgRef.current) return;
+
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const center = width / 2;
+
+        svgRef.current.setAttribute("viewBox", `0 0 ${width} ${height}`);
+
+        const steps = 60;
+        let d = "";
+
+        for (let i = 0; i <= steps; i++) {
+          const x = (width / steps) * i;
+          const dxp = gsap.utils.clamp(-radius + 1, radius - 1, x - center);
+          const y = baseY + (radius - Math.sqrt(radius * radius - dxp * dxp));
+          d += i === 0 ? `M ${x} ${y}` : ` L ${x} ${y}`;
+        }
+
+        pathRef.current.setAttribute("d", d);
       }
 
       let animating = false;
@@ -160,6 +213,9 @@ export default function StotyTimeline() {
 
       return () => {
         gsap.ticker.remove(updateArc);
+        window.removeEventListener("resize", measureBaseY);
+        window.removeEventListener("resize", measureDots);
+
         observer.kill();
       };
     },
@@ -196,28 +252,22 @@ export default function StotyTimeline() {
 
   return (
     <div className="relative flex flex-col bg-[#e4e6e7] min-h-screen overflow-clip">
-      <main className="relative flex items-center pb-24 lg:pb-46  z-5 flex-1 gap-3">
+      <main className="relative flex pb-24 lg:pb-46  z-5 flex-1 gap-3">
         <svg
-          className="absolute z-3  -top-23 w-full h-full   pointer-events-none"
-          viewBox="0 0 1000 300"
-          preserveAspectRatio="none"
+          ref={svgRef}
+          className="fixed top-0 z-3 w-screen h-screen pointer-events-none"
         >
-          <path
-            d="M-40 260 Q480  15 1000 243"
-            fill="none"
-            stroke="white"
-            strokeWidth="0.5"
-          />
+          <path ref={pathRef} fill="none" stroke="white" strokeWidth="1" />
         </svg>
 
         <div ref={container} className="flex gap-0 items-center">
           {items.map((item, index) => (
             <div
               key={item.year}
-              className="realtive z-6 flex flex-col gap-2  justify-center items-center w-[15%] min-[480px]:w-[20%]! sm:w-[33%]! min-[800px]:w-[calc(100%/3)]!  lg:w-[calc(100%/3)]! shrink-0  "
+              className="relative z-6 flex flex-col gap-2  justify-center items-center w-[15%] min-[480px]:w-[20%]! sm:w-[33%]! min-[800px]:w-[calc(100%/3)]!  lg:w-[calc(100%/3)]! shrink-0  "
             >
               <span
-                className={`block h-3 w-3 ${(currentIndex + 1) % items.length === index ? "bg-[#61686b]" : "bg-white animate-pulse"} rounded-full cursor-pointer`}
+                className={`dot block h-3 w-3 ${(currentIndex + 1) % items.length === index ? "bg-[#61686b]" : "bg-white animate-pulse"} rounded-full cursor-pointer`}
                 onClick={() => handleBoxClick(index)}
               ></span>
               <h2 className={`text-[#61686b] font-bold text-3xl`}>
