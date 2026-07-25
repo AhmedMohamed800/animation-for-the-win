@@ -47,6 +47,8 @@ export default function BasketballNetScroll() {
         duration: 2,
       });
     });
+
+    return () => mm.revert();
   });
 
   return (
