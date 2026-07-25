@@ -7,7 +7,7 @@ export default function Home() {
         You can view the animations that I created Here
       </h1>
 
-      <div className="flex mt-4 gap-4">
+      <div className="flex flex-wrap mt-4 gap-4">
         <Link
           href="/animations/polygon-morph"
           className="border border-foreground px-4 py-2 hover:opacity-90"
@@ -26,6 +26,13 @@ export default function Home() {
           className="border border-foreground px-4 py-2 hover:opacity-90"
         >
           Story Timeline
+        </Link>
+
+        <Link
+          href="/animations/basketball-net-scroll"
+          className="border border-foreground px-4 py-2 hover:opacity-90"
+        >
+          Basketball Net Scroll
         </Link>
       </div>
     </div>
