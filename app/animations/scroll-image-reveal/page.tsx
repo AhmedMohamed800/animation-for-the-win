@@ -22,6 +22,12 @@ export default function ScrollImageReveal() {
   const imageContainer4 = useRef<HTMLDivElement | null>(null);
   const imageContainer5 = useRef<HTMLDivElement | null>(null);
   const imageContainer6 = useRef<HTMLDivElement | null>(null);
+  const image1 = useRef<HTMLImageElement | null>(null);
+  const image2 = useRef<HTMLImageElement | null>(null);
+  const image3 = useRef<HTMLImageElement | null>(null);
+  const image4 = useRef<HTMLImageElement | null>(null);
+  const image5 = useRef<HTMLImageElement | null>(null);
+  const image6 = useRef<HTMLImageElement | null>(null);
 
   useGSAP(() => {
     const smoother = ScrollSmoother.create({
@@ -43,13 +49,13 @@ export default function ScrollImageReveal() {
     });
 
     tl.to(imageContainer3.current, {
-      xPercent: 200.25,
+      xPercent: 200.5,
     });
 
     tl.to(
       imageContainer4.current,
       {
-        xPercent: 200.25,
+        xPercent: 200.5,
       },
       "<",
     );
@@ -57,7 +63,7 @@ export default function ScrollImageReveal() {
     tl.to(
       imageContainer5.current,
       {
-        xPercent: 200.25,
+        xPercent: 200.5,
       },
       "<",
     );
@@ -65,7 +71,7 @@ export default function ScrollImageReveal() {
     tl.to(
       imageContainer6.current,
       {
-        xPercent: 200.25,
+        xPercent: 200.5,
       },
       "<",
     );
@@ -73,7 +79,7 @@ export default function ScrollImageReveal() {
     tl.to(
       imageContainer2.current,
       {
-        xPercent: 100.25,
+        xPercent: 100.5,
       },
       "<",
     );
@@ -118,6 +124,8 @@ export default function ScrollImageReveal() {
       },
     );
 
+    tl.to(image1.current, { scale: 1.15 }, "<");
+
     tl.fromTo(
       imageContainer2.current,
       {
@@ -135,6 +143,8 @@ export default function ScrollImageReveal() {
       },
     );
 
+    tl.to(image2.current, { scale: 1.15 }, "<");
+
     tl.fromTo(
       imageContainer3.current,
       {
@@ -151,6 +161,7 @@ export default function ScrollImageReveal() {
         },
       },
     );
+    tl.to(image3.current, { scale: 1.15 }, "<");
 
     tl.fromTo(
       imageContainer4.current,
@@ -169,6 +180,8 @@ export default function ScrollImageReveal() {
       },
     );
 
+    tl.to(image4.current, { scale: 1.15 }, "<");
+
     tl.fromTo(
       imageContainer5.current,
       {
@@ -185,6 +198,8 @@ export default function ScrollImageReveal() {
         },
       },
     );
+
+    tl.to(image5.current, { scale: 1.15 }, "<");
 
     return () => smoother.kill();
   });
@@ -204,12 +219,12 @@ export default function ScrollImageReveal() {
           </header>
 
           <main
-            className="hidden md:flex relative min-h-[calc(100vh-48px)] bg-[#000000] text-black pl-4 "
+            className="hidden md:flex relative min-h-[calc(100vh-48px)] bg-[#000000] text-black  "
             ref={contentContainer}
           >
             {/* Main Content */}
-            <div className="flex gap-6 justify-between  min-h-[calc(100vh-48px)] w-full flex-2 pb-2 z-7">
-              <div className="flex flex-col gap-6 justify-between">
+            <div className="flex gap-6 justify-between  min-h-[calc(100vh-48px)] w-full flex-2 pb-2 z-7 ">
+              <div className="flex flex-col gap-6 justify-between pl-4">
                 <div className="flex flex-col">
                   <h1
                     className="text-[70px] min-[1250px]:text-[110px] leading-[90%] font-bold"
@@ -286,23 +301,25 @@ export default function ScrollImageReveal() {
               ref={imageContainer}
             >
               <div
-                className="relative w-full shrink-0  h-full z-6"
+                className="relative w-full shrink-0  h-full z-6 overflow-hidden"
                 ref={imageContainer1}
               >
                 <Image
                   src="/scroll-image-reveal/building1.webp"
                   alt="building 1"
+                  ref={image1}
                   fill
                   className="object-cover"
                 />
               </div>
               <div
-                className="relative w-full shrink-0  h-full z-5"
+                className="relative w-full shrink-0  h-full z-5 overflow-hidden"
                 ref={imageContainer2}
               >
                 <Image
                   src="/scroll-image-reveal/building2.webp"
                   alt="building 2"
+                  ref={image2}
                   fill
                   className="object-cover"
                 />
@@ -310,44 +327,48 @@ export default function ScrollImageReveal() {
               <div className="relative w-full shrink-0  h-full ">
                 <div
                   ref={imageContainer3}
-                  className="absolute top-0 left-0 w-full h-full z-4"
+                  className="absolute top-0 left-0 w-full h-full z-4 overflow-hidden"
                 >
                   <Image
                     src="/scroll-image-reveal/building3.webp"
                     alt="building 3"
                     fill
+                    ref={image3}
                     className="object-cover z-4"
                   />
                 </div>
                 <div
                   ref={imageContainer4}
-                  className="absolute top-0 left-0 w-full h-full z-3"
+                  className="absolute top-0 left-0 w-full h-full z-3 overflow-hidden"
                 >
                   <Image
                     src="/scroll-image-reveal/building4.webp"
                     alt="building 4"
                     fill
+                    ref={image4}
                     className="object-cover z-3"
                   />
                 </div>
                 <div
                   ref={imageContainer5}
-                  className="absolute top-0 left-0 w-full h-full z-2"
+                  className="absolute top-0 left-0 w-full h-full z-2 overflow-hidden"
                 >
                   <Image
                     src="/scroll-image-reveal/building5.webp"
                     alt="building 5"
+                    ref={image5}
                     fill
                     className="object-cover z-2"
                   />
                 </div>
                 <div
                   ref={imageContainer6}
-                  className="absolute top-0 left-0 w-full h-full z-1"
+                  className="absolute top-0 left-0 w-full h-full z-1 overflow-hidden"
                 >
                   <Image
                     src="/scroll-image-reveal/building6.webp"
                     alt="building 6"
+                    ref={image6}
                     fill
                     className="object-cover z-1"
                   />
