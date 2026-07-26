@@ -34,6 +34,13 @@ export default function Home() {
         >
           Basketball Net Scroll
         </Link>
+
+        <Link
+          href="/animations/scroll-image-reveal"
+          className="border border-foreground px-4 py-2 hover:opacity-90"
+        >
+          Scroll Image Reveal
+        </Link>
       </div>
     </div>
   );
