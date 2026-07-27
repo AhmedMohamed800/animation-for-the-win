@@ -41,6 +41,13 @@ export default function Home() {
         >
           Scroll Image Reveal
         </Link>
+
+        <Link
+          href="/animations/vertical-scroll-drag"
+          className="border border-foreground px-4 py-2 hover:opacity-90"
+        >
+          Vertical Scroll Drag
+        </Link>
       </div>
     </div>
   );
