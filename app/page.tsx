@@ -48,6 +48,13 @@ export default function Home() {
         >
           Vertical Scroll Drag
         </Link>
+
+        <Link
+          href="/animations/rect-hover"
+          className="border border-foreground px-4 py-2 hover:opacity-90"
+        >
+          Rect Hover
+        </Link>
       </div>
     </div>
   );
