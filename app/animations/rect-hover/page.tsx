@@ -4,7 +4,7 @@ import { ShiledIcon, AxeIcon, ArrowIcon, BugIcon } from "./_components/Icons";
 export default function RectHover() {
   return (
     <div
-      className="flex flex-col  gap-8 min-h-screen bg-white px-8 py-5"
+      className="flex flex-col  gap-8 min-h-screen bg-white px-8 py-8"
       style={{
         fontFamily: "Poppins",
       }}
