@@ -7,8 +7,10 @@ gsap.registerPlugin(useGSAP);
 
 export default function ReactHoverComponent({
   children,
+  color = "0000FF",
 }: {
   children: ReactNode;
+  color: string;
 }) {
   const grid = useRef<HTMLDivElement | null>(null);
   const [coordination, setCoordination] = useState<{
@@ -78,7 +80,7 @@ export default function ReactHoverComponent({
       {children}
       {/*  */}
       <div
-        className="absolute top-0 left-0   w-full h-full grid   overflow-clip"
+        className="absolute top-0 left-0 w-full h-full grid overflow-clip"
         style={{
           gridTemplateColumns: `repeat( auto-fit, minmax(${cubeSize}px, 1fr) )`,
         }}
@@ -93,7 +95,7 @@ export default function ReactHoverComponent({
           return (
             <div
               key={index}
-              className="box bg-blue-600"
+              className={`box `}
               data-row={
                 (index % Math.floor(coordination.height / cubeSize)) + 1
               }
@@ -103,6 +105,7 @@ export default function ReactHoverComponent({
               style={{
                 height: cubeSize,
                 opacity: 0,
+                backgroundColor: color,
               }}
             ></div>
           );

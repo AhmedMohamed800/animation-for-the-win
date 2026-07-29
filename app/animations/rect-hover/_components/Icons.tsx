@@ -4,6 +4,7 @@ function ShiledIcon() {
       fill="#ffffff"
       viewBox="0 0 32 32"
       version="1.1"
+      className="w-80 self-center"
       xmlns="http://www.w3.org/2000/svg"
       stroke="#ffffff"
     >
@@ -27,6 +28,7 @@ function AxeIcon() {
       fill="#ffffff"
       viewBox="0 0 32 32"
       version="1.1"
+      className="w-80 self-center"
       xmlns="http://www.w3.org/2000/svg"
       stroke="#ffffff"
     >
@@ -51,6 +53,7 @@ function ArrowIcon() {
       fill="#ffffff"
       viewBox="0 0 32 32"
       version="1.1"
+      className="w-80 self-center"
       xmlns="http://www.w3.org/2000/svg"
       stroke="#ffffff"
     >
@@ -72,11 +75,12 @@ function ArrowIcon() {
 function BugIcon() {
   return (
     <svg
-      fill="#ffffff"
+      fill="#000000"
       viewBox="0 0 32 32"
       version="1.1"
+      className="w-80 self-center"
       xmlns="http://www.w3.org/2000/svg"
-      stroke="#ffffff"
+      stroke="#000000"
     >
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g
