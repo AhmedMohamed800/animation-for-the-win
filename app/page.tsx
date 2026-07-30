@@ -55,6 +55,13 @@ export default function Home() {
         >
           Rect Hover
         </Link>
+
+        <Link
+          href="/animations/distortion-carousel"
+          className="border border-foreground px-4 py-2 hover:opacity-90"
+        >
+          Distortion Carousel
+        </Link>
       </div>
     </div>
   );
