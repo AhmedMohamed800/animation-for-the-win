@@ -36,44 +36,33 @@ export default function ReactHoverComponent({
     return () => observer.disconnect();
   }, []);
 
-  const { contextSafe } = useGSAP({ scope: grid });
-
-  const mouseOverGrid = contextSafe((e: React.MouseEvent<HTMLDivElement>) => {
+  const handlePointerOver = (e: React.PointerEvent<HTMLDivElement>) => {
     const target = e.target;
 
     if (
       !(target instanceof HTMLDivElement) ||
       !target.classList.contains("box")
-    )
+    ) {
       return;
-
-    const next = target.nextElementSibling as HTMLDivElement | null;
+    }
 
     const targets: HTMLDivElement[] = [target];
+
+    const next = target.nextElementSibling as HTMLDivElement | null;
 
     if (next && Number(next.dataset.column) !== 1) {
       targets.push(next);
     }
 
-    gsap.killTweensOf(targets);
+    for (const box of targets) {
+      box.classList.remove("flash");
 
-    gsap.fromTo(
-      targets,
-      {
-        opacity: 0,
-        scale: 0.6,
-      },
-      {
-        opacity: 1,
-        scale: 1,
-        duration: 0.1,
-        ease: "power2.out",
-        yoyo: true,
-        repeat: 1,
-        repeatDelay: 0.25,
-      },
-    );
-  });
+      // Force reflow so the animation can restart
+      void box.offsetWidth;
+
+      box.classList.add("flash");
+    }
+  };
 
   return (
     <div className="relative w-full h-full">
@@ -85,7 +74,7 @@ export default function ReactHoverComponent({
           gridTemplateColumns: `repeat( auto-fit, minmax(${cubeSize}px, 1fr) )`,
         }}
         ref={grid}
-        onMouseMove={mouseOverGrid}
+        onPointerOver={handlePointerOver}
       >
         {Array.from({
           length:
