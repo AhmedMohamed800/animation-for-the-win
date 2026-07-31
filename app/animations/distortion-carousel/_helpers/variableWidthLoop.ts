@@ -42,7 +42,7 @@ export default function horizontalLoop(
     throw new Error("horizontalLoop: at least one item is required.");
   }
 
-  const container = els[0].parentElement;
+  const container = els[0].parentElement as HTMLElement;
   if (!container) {
     throw new Error(
       "horizontalLoop: items must be attached to a parent container.",
