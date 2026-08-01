@@ -14,9 +14,7 @@ export default function DistortionCarousel() {
   const loopRef = useRef<ReturnType<typeof horizontalLoop> | null>(null);
   const container = useRef<HTMLDivElement | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  // Fixed width for the Silk canvas layer (equal to the active/expanded item
-  // width). Kept constant so the canvas never resizes as flexBasis animates
-  // between the base and active widths — only the visible crop changes.
+
   const [silkWidth, setSilkWidth] = useState<number | null>(null);
 
   const items = [

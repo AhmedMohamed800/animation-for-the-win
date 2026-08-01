@@ -62,6 +62,13 @@ export default function Home() {
         >
           Distortion Carousel
         </Link>
+
+        <Link
+          href="/animations/scroll-columns"
+          className="border border-foreground px-4 py-2 hover:opacity-90"
+        >
+          Scroll Columns
+        </Link>
       </div>
     </div>
   );
