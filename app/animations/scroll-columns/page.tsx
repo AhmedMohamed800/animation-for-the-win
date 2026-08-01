@@ -41,7 +41,7 @@ export default function ScrollColumns() {
       .from(cardsContainer.current, { scale: 1.5 }, "<")
       .to(".middle", { y: -1100 }, "<")
       .to(".item", { y: -1000 }, "<")
-      .to(Header.current, { yPercent: 700, skewY: 0.4 });
+      .to(Header.current, { yPercent: 750, skewY: 0.4 });
 
     return () => smoother.kill();
   });
