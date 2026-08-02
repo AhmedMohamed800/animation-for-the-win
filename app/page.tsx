@@ -69,6 +69,13 @@ export default function Home() {
         >
           Scroll Columns
         </Link>
+
+        <Link
+          href="/animations/scroll-horizontal-shift"
+          className="border border-foreground px-4 py-2 hover:opacity-90"
+        >
+          scroll-horizontal-shift
+        </Link>
       </div>
     </div>
   );
