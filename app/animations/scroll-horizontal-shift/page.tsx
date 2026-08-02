@@ -5,14 +5,16 @@ import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 
-gsap.registerPlugin(useGSAP, ScrollSmoother, ScrollTrigger);
+gsap.registerPlugin(useGSAP, ScrollSmoother, ScrollTrigger, SplitText);
 
 export default function ScrollHorizontalShift() {
   const wrapper = useRef<HTMLDivElement | null>(null);
   const firstContainerChild = useRef<HTMLDivElement | null>(null);
   const secondContainer = useRef<HTMLDivElement | null>(null);
   const timeline = useRef<gsap.core.Timeline | null>(null);
+  const paragraph = useRef<HTMLParagraphElement | null>(null);
 
   useGSAP(() => {
     const smoother = ScrollSmoother.create({
@@ -20,53 +22,80 @@ export default function ScrollHorizontalShift() {
       normalizeScroll: true,
       smoothTouch: 0.1,
     });
+    const mm = gsap.matchMedia();
 
-    timeline.current = gsap.timeline({
-      defaults: {
-        ease: "none",
-      },
-      scrollTrigger: {
-        trigger: wrapper.current,
-        pin: true,
-        start: "top top",
-        end: "+=1500vh",
-        scrub: true,
-        pinSpacing: true,
-      },
-    });
-
-    timeline.current
-      .to(secondContainer.current, {
-        xPercent: -100,
-        duration: 2,
-      })
-      .fromTo(
-        ".reveal-image-container",
-        {
-          clipPath: "polygon(100% 0%, 100% 100%, 30% 100%, 30% 0%);",
-          left: -300,
+    mm.add("(min-width: 1024px)", () => {
+      timeline.current = gsap.timeline({
+        defaults: {
+          ease: "none",
         },
-        {
-          clipPath: "polygon(100% 0%, 100% 100%, 0% 100%, 0% 0%)",
-          duration: 2,
-          left: 0,
+        scrollTrigger: {
+          trigger: wrapper.current,
+          pin: true,
+          start: "top top",
+          end: "+=1500vh",
+          scrub: true,
+          pinSpacing: true,
         },
-        "<",
-      )
-      .to(
-        firstContainerChild.current,
-        {
-          xPercent: -100,
-          duration: 0.8,
-        },
-        "<1.22",
-      )
-      .to(".reveal-image", {
-        yPercent: -100,
-        duration: 1,
       });
 
-    return () => smoother.kill();
+      timeline.current
+        .to(secondContainer.current, {
+          xPercent: -100,
+          duration: 2,
+        })
+        .fromTo(
+          ".reveal-image-container",
+          {
+            clipPath: "polygon(100% 0%, 100% 100%, 30% 100%, 30% 0%);",
+            left: -300,
+          },
+          {
+            clipPath: "polygon(100% 0%, 100% 100%, 0% 100%, 0% 0%)",
+            duration: 2,
+            left: 0,
+          },
+          "<",
+        )
+        .to(
+          firstContainerChild.current,
+          {
+            xPercent: -100,
+            duration: 0.8,
+          },
+          "<1.22",
+        )
+        .to(".reveal-image", {
+          yPercent: -100,
+          duration: 1,
+        });
+    });
+
+    const textTimeLine = gsap.timeline();
+    const split = SplitText.create(".myText", {
+      type: "lines",
+      mask: "lines",
+    });
+
+    const split2 = SplitText.create(paragraph.current, {
+      type: "lines",
+      mask: "lines",
+    });
+
+    textTimeLine
+      .from(split.lines, {
+        y: 70,
+        stagger: 0.2,
+      })
+      .from(split2.lines, {
+        y: 30,
+        stagger: 0.1,
+      });
+
+    return () => {
+      smoother.kill();
+      mm.revert();
+    };
   });
 
   return (
@@ -78,7 +107,7 @@ export default function ScrollHorizontalShift() {
     >
       <div id="smooth-content" className="overflow-hidden">
         <div id="wrapper" className="w-[200vw] " ref={wrapper}>
-          <div className="flex min-h-screen ">
+          <div className="hidden lg:flex  min-h-screen ">
             <div className="flex w-screen bg-white">
               <div
                 className="relative z-2 flex flex-col w-[80%]"
@@ -104,17 +133,19 @@ export default function ScrollHorizontalShift() {
                   <h3 className="text-3xl text-black font-light">View all</h3>
                 </div>
               </div>
-              <div className="flex flex-col justify-center text-black px-10 gap-8">
-                <h2 className="flex flex-col w-full text-5xl font-medium uppercase">
-                  <span>Who said</span>
+              <div className="flex flex-col justify-center w-full text-black px-10 gap-8">
+                <h2 className=" flex flex-col w-full text-5xl font-medium uppercase">
+                  <span className="myText">Who said</span>
                   <div className="flex gap-12">
-                    <span>That the</span>
-                    <span>pleasure</span>
+                    <span className="myText">That the</span>
+                    <span className="myText">pleasure</span>
                   </div>
-                  <span className="self-end">It just can&lsquo;t be</span>{" "}
-                  <span className="self-end">Functiona</span>
+                  <span className="myText self-end">
+                    It just can&lsquo;t be
+                  </span>{" "}
+                  <span className="myText self-end">Functiona</span>
                 </h2>
-                <p className="text-[18px] font-light">
+                <p className=" text-[18px] font-light" ref={paragraph}>
                   We create spaces that don&lsquo;t follow trends, but instead
                   embrace craftsmanship, local workshops, sustainability, and
                   the enjoyment of their occupants. Spaces of calm, but also
@@ -148,10 +179,14 @@ export default function ScrollHorizontalShift() {
           </div>
         </div>
 
-        <div className="flex items-center justify-center min-h-screen w-full bg-amber-100">
+        <div className="hidden lg:flex items-center justify-center min-h-screen w-full bg-amber-100">
           <h1 className="text-black text-6xl font-medium">
             Animation For The Win
           </h1>
+        </div>
+
+        <div className="flex min-h-screen justify-center items-center bg-black text-white lg:hidden">
+          <h1 className="text-white">Open from Descktop</h1>
         </div>
       </div>
     </div>
