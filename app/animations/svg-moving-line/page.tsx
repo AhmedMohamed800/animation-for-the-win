@@ -54,22 +54,23 @@ export default function SvgMovingLine() {
 
     const secondTimeLine = gsap.timeline({
       scrollTrigger: {
-        start: "top top",
+        trigger: secondContainer.current,
+        start: "-40% top",
         toggleActions: "play reset play reset",
       },
     });
     secondTimeLine
       .from("#SecondLine", {
         drawSVG: "0% 0%",
-        ease: "power2.inOut",
-        duration: 5,
+        ease: "power2.out",
+        duration: 2,
       })
       .from(
         ".koshari",
         {
           scale: 0.6,
-          ease: "power2.inOut",
-          duration: 3,
+          ease: "power2.out",
+          duration: 2,
         },
         "<",
       );
