@@ -77,3 +77,18 @@ body {
     transform: scale(0.6);
   }
 }
+
+/* SVG */
+.wrap-image {
+  mask: url("/svg-moving-line/Koshari.png");
+  -webkit-mask-box-image: url("/svg-moving-line/Koshari.png");
+}
+
+.image-container {
+  background-size: 100%;
+  background-image: url("/svg-moving-line/Koshari.png");
+  -webkit-filter: drop-shadow(40px 45px 10px rgba(0, 0, 0, 0.3));
+  -moz-filter: drop-shadow(40px 45px 10px rgba(0, 0, 0, 0.3));
+  -ms-filter: drop-shadow(40px 45px 10px rgba(0, 0, 0, 0.3));
+  -o-filter: drop-shadow(40px 45px 10px rgba(0, 0, 0, 0.3));
+}

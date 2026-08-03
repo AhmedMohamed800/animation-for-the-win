@@ -76,6 +76,13 @@ export default function Home() {
         >
           scroll-horizontal-shift
         </Link>
+
+        <Link
+          href="/animations/svg-moving-line"
+          className="border border-foreground px-4 py-2 hover:opacity-90"
+        >
+          SVG Moving Line
+        </Link>
       </div>
     </div>
   );
