@@ -33,7 +33,7 @@ export default function SvgMovingLine() {
       scrollTrigger: {
         trigger: firstContainer.current,
         start: "top 90%",
-        toggleActions: "play reset play reset",
+        toggleActions: "play reset play none",
       },
     });
 
@@ -56,7 +56,7 @@ export default function SvgMovingLine() {
       scrollTrigger: {
         trigger: secondContainer.current,
         start: "-40% top",
-        toggleActions: "play reset play reset",
+        toggleActions: "play reset play none",
       },
     });
     secondTimeLine
