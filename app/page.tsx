@@ -83,6 +83,13 @@ export default function Home() {
         >
           SVG Moving Line
         </Link>
+
+        <Link
+          href="/animations/page-transition-columns"
+          className="border border-foreground px-4 py-2 hover:opacity-90"
+        >
+          Page Transition Columns
+        </Link>
       </div>
     </div>
   );
