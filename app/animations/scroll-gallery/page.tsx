@@ -43,6 +43,7 @@ export default function ScrollGalelry() {
 
     let currentIndex = 0;
     let zCounter = 1;
+    let animation = false;
 
     gsap.set(imageElements, {
       clipPath: "polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)",
@@ -54,6 +55,7 @@ export default function ScrollGalelry() {
     });
 
     const changeImage = (direction: 1 | -1) => {
+      animation = true;
       const nextIndex = clampIndex(currentIndex + direction);
 
       if (nextIndex === currentIndex) return;
@@ -69,21 +71,19 @@ export default function ScrollGalelry() {
           clipPath: "polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%)",
           ease: "power1.inOut",
           duration: 0.6,
+          onComplete: () => {
+            animation = false;
+          },
         },
       );
-
-      gsap.to(imageContainerColumn.current, {
-        y: imageColumnConatinerElements[nextIndex].getBoundingClientRect()
-          .height,
-      });
 
       currentIndex = nextIndex;
       setCurrentIndex(nextIndex);
     };
 
     const observer = Observer.create({
-      onUp: () => changeImage(1),
-      onDown: () => changeImage(-1),
+      onUp: () => !animation && changeImage(1),
+      onDown: () => !animation && changeImage(-1),
       wheelSpeed: -1,
       tolerance: 300,
     });
