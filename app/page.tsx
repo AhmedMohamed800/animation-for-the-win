@@ -90,6 +90,13 @@ export default function Home() {
         >
           Page Transition Columns
         </Link>
+
+        <Link
+          href="/animations/scroll-gallery"
+          className="border border-foreground px-4 py-2 hover:opacity-90"
+        >
+          Scroll Gallery
+        </Link>
       </div>
     </div>
   );
