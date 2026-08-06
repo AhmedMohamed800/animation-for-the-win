@@ -85,7 +85,7 @@ export default function ScrollGalelry() {
       onUp: () => changeImage(1),
       onDown: () => changeImage(-1),
       wheelSpeed: -1,
-      tolerance: 200,
+      tolerance: 300,
     });
 
     return () => observer.kill();
