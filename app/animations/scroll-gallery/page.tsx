@@ -89,7 +89,7 @@ export default function ScrollGalelry() {
       onUp: () => !animation && changeImage(1),
       onDown: () => !animation && changeImage(-1),
       wheelSpeed: -1,
-      tolerance: 200,
+      tolerance: 100,
     });
 
     return () => observer.kill();
