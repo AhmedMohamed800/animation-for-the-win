@@ -58,7 +58,11 @@ export default function ScrollGalelry() {
       animation = true;
       const nextIndex = clampIndex(currentIndex + direction);
 
-      if (nextIndex === currentIndex) return;
+      if (nextIndex === currentIndex) {
+        animation = false;
+
+        return;
+      }
       zCounter++;
       gsap.set(imageElements[nextIndex].parentElement, { zIndex: zCounter });
 
@@ -85,7 +89,7 @@ export default function ScrollGalelry() {
       onUp: () => !animation && changeImage(1),
       onDown: () => !animation && changeImage(-1),
       wheelSpeed: -1,
-      tolerance: 300,
+      tolerance: 200,
     });
 
     return () => observer.kill();
