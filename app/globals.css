@@ -92,3 +92,60 @@ body {
   -ms-filter: drop-shadow(40px 45px 10px rgba(0, 0, 0, 0.3));
   -o-filter: drop-shadow(40px 45px 10px rgba(0, 0, 0, 0.3));
 }
+
+/* Draggable Hero */
+.draggable {
+  position: relative;
+  border: 1px solid transparent;
+  width: fit-content;
+  box-sizing: border-box;
+
+  padding-inline: 12px;
+  padding-block: 8px;
+}
+
+.draggable:hover::before {
+  content: attr(data-label);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  height: 10px;
+  top: -25px;
+  left: 5px;
+  width: fit-content;
+  height: 25px;
+  border-radius: 2px;
+  padding: 10px !important;
+  margin: 0;
+  background-color: blue;
+  color: white;
+}
+
+.draggable:hover {
+  border: 1px solid blue;
+}
+
+.draggableActive {
+  border: 1px solid blue;
+}
+
+.draggableActive::before {
+  content: attr(data-label);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  height: 10px;
+  top: -25px;
+  left: 5px;
+  width: fit-content;
+  height: 25px;
+  border-radius: 2px;
+  padding: 10px !important;
+  margin: 0;
+  background-color: blue;
+  color: white;
+}

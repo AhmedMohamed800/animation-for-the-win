@@ -97,6 +97,12 @@ export default function Home() {
         >
           Scroll Gallery
         </Link>
+        <Link
+          href="/animations/draggable-hero"
+          className="border border-foreground px-4 py-2 hover:opacity-90"
+        >
+          Draggable Hero
+        </Link>
       </div>
     </div>
   );
