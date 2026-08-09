@@ -103,6 +103,13 @@ export default function Home() {
         >
           Draggable Hero
         </Link>
+
+        <Link
+          href="/animations/grid-card-reveal"
+          className="border border-foreground px-4 py-2 hover:opacity-90"
+        >
+          Grid Card Reveal
+        </Link>
       </div>
     </div>
   );

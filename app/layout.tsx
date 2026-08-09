@@ -20,7 +20,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${poppins.className}  h-full antialiased`}>
-      <body className="flex flex-col min-h-full ">{children}</body>
+      <body
+        className="flex flex-col min-h-full "
+        style={{
+          fontFamily: "Poppins",
+        }}
+      >
+        {children}
+      </body>
     </html>
   );
 }
