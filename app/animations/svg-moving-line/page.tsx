@@ -80,9 +80,9 @@ export default function SvgMovingLine() {
   });
 
   return (
-    <div id="smooth-content" className="">
+    <div id="smooth-wrapper" className="">
       <div
-        id="wrapper"
+        id="smooth-content"
         style={{
           fontFamily: "Poppins",
         }}
@@ -178,7 +178,7 @@ export default function SvgMovingLine() {
               </div>
 
               {/* Second Line */}
-              <div className="absolute z-2 -left-20 top-0 mx-auto  w-full h-full ">
+              <div className="absolute z-2 left-[50%] translate-x-[-50%] top-0 mx-auto  w-screen h-full ">
                 <SecondLine />
               </div>
               {/* Plate */}

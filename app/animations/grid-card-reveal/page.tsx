@@ -106,8 +106,9 @@ export default function GrdiCardReveal() {
           );
 
           gsap.set(cardContainerElement, {
-            x: values.x,
-            y: values.y,
+            x: "+=" + values.x,
+            y: "+=" + values.y,
+            rotateY: 0,
             rotate: (i + 5) * 1,
           });
         });

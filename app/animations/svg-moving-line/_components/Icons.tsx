@@ -56,7 +56,7 @@ function FirstLine() {
 function SecondLine() {
   return (
     <svg
-      width="120%"
+      width="100vw"
       height="100%"
       viewBox="0 0 1052 390"
       fill="none"
