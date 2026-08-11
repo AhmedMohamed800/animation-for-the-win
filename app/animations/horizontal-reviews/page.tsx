@@ -213,7 +213,7 @@ export default function HorizontalReviews() {
             ))}
           </div>
           <div
-            className="flex gap-8 w-[2450px] translate-x-100 mt-10"
+            className="flex gap-8 w-[2450px] translate-x-8 lg:translate-x-100 mt-10"
             ref={RefviewsContainer}
           >
             {reviewsData.map((review, index) => {
