@@ -110,6 +110,12 @@ export default function Home() {
         >
           Grid Card Reveal
         </Link>
+        <Link
+          href="/animations/horizontal-reviews"
+          className="border border-foreground px-4 py-2 hover:opacity-90"
+        >
+          Horizontal Reviews
+        </Link>
       </div>
     </div>
   );
