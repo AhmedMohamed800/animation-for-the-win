@@ -116,6 +116,12 @@ export default function Home() {
         >
           Horizontal Reviews
         </Link>
+        <Link
+          href="/animations/book-pages"
+          className="border border-foreground px-4 py-2 hover:opacity-90"
+        >
+          Book Pages
+        </Link>
       </div>
     </div>
   );
