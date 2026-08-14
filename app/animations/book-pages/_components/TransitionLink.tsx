@@ -28,7 +28,7 @@ const TrainsitoinLink = ({ href, label, className, color }: Props) => {
       <BookMark color={color} direction="right" />
 
       <button
-        className="relative  font-light uppercase z-10 w-full h-[200px] text-[20px] cursor-pointer f text-white"
+        className="relative z-1 font-light uppercase  w-full h-[200px] text-[20px] cursor-pointer f text-white"
         style={{
           writingMode: "vertical-rl",
           backgroundColor: color,

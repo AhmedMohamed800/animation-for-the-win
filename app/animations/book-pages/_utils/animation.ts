@@ -10,9 +10,12 @@ export const animatePageIn = () => {
   const pageTitle = document.querySelector(".page-title");
   const bookContent = document.querySelector(".book-content");
   const bookCover = document.querySelector(".book-cover");
+  const book = document.querySelector(".book");
 
   document.fonts.ready.then(() => {
     const split = SplitText.create(pageTitle, { type: "chars", mask: "chars" });
+
+    document.body.style.overflow = "hidden";
 
     gsap.set(split.chars, {
       xPercent: 100,
@@ -26,17 +29,27 @@ export const animatePageIn = () => {
       backgroundColor: bookContent?.getAttribute("data-color") ?? "#fff",
     });
 
-    const tl = gsap.timeline({});
+    if (!sessionStorage.getItem("first_time")) {
+      gsap.set(book, {
+        yPercent: 30,
+      });
+      sessionStorage.setItem("first_time", "true");
+    }
 
-    tl.to(split.chars, {
-      xPercent: 0,
-      stagger: {
-        amount: 0.2,
-        ease: "back.out",
-        from: "end",
+    const tl = gsap.timeline({
+      onStart: () => {
+        gsap.to(window, {
+          duration: 0.6,
+          scrollTo: { y: 0 },
+        });
       },
+      onComplete: () => {
+        document.body.style.overflow = "";
+      },
+    });
 
-      duration: 2,
+    tl.to(book, {
+      yPercent: 0,
     })
       .fromTo(
         bookCover,
@@ -44,47 +57,69 @@ export const animatePageIn = () => {
           rotateY: 0,
         },
         {
-          rotateY: 180,
+          rotateY: -180,
           duration: 2,
-          boxShadow: 0,
         },
-        "<",
       )
-      .to(bookCover, {});
+      .to(
+        split.chars,
+        {
+          xPercent: 0,
+          stagger: {
+            amount: 0.2,
+            ease: "power2.out",
+            from: "end",
+          },
+          duration: 0.5,
+        },
+        "<20%",
+      );
   });
 };
 
 export const animatePageOut = (href: string, router: AppRouterInstance) => {
   const pageTitle = document.querySelector(".page-title");
   const bookCover = document.querySelector(".book-cover");
-  const bookContent = document.querySelector(".book-content");
+  const book = document.querySelector(".book");
 
   document.fonts.ready.then(() => {
     const split = SplitText.create(pageTitle, { type: "chars", mask: "chars" });
 
+    gsap.set(book, {
+      y: 0,
+    });
+
     const tl = gsap.timeline({
-      onComplete: () => router.push(href),
-      onStart() {
-        gsap.to(window, { duration: 1, scrollTo: { y: 0 } });
+      onStart: () => {
+        document.body.style.overflow = "hidden";
+
+        gsap.to(window, {
+          duration: 0.6,
+          scrollTo: { y: 0 },
+        });
+      },
+
+      onComplete: () => {
+        router.push(href);
       },
     });
 
-    tl.to(split.chars, {
-      xPercent: 100,
-      stagger: {
-        amount: 0.2,
-        ease: "back.in",
-        from: "end",
-      },
-
-      duration: 0.6,
+    tl.to(bookCover, {
+      rotateY: 0,
+      duration: 2,
     }).to(
-      bookCover,
+      split.chars,
       {
-        rotateY: 0,
-        duration: 0.6,
+        xPercent: 100,
+        stagger: {
+          amount: 0.1,
+          ease: "power2.out",
+          from: "end",
+        },
+
+        duration: 0.5,
       },
-      ">",
+      "-=1.3",
     );
   });
 };

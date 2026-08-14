@@ -20,21 +20,17 @@ export default function Template({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      <h1 className="page-title opacity-0 uppercase font-bold text-6xl mb-12 pl-16">
+      <h1 className="page-title opacity-0 uppercase font-bold text-4xl lg:text-6xl mb-12 pl-8 lg:pl-16">
         {pageName}
       </h1>
 
-      <div
-        className="relative flex"
-        style={{
-          perspective: "2000px",
-        }}
-      >
+      <div className="book relative flex flex-1 lg:flex-0">
         <div
-          className="book-content  relative w-[75%]  rounded-l-none rounded-sm ml-6 py-12 px-16"
+          className="book-content w-[75%]  rounded-l-none rounded-sm ml-6 py-12 pr-4 pl-1 lg:px-16"
           data-color={`${pageName.includes("second page") ? "#155dfc" : "#fb2c36"}`}
           style={{
             backgroundColor: `${pageName.includes("second page") ? "#155dfc" : "#fb2c36"}`,
+            perspective: "2000px",
           }}
         >
           {children}
@@ -47,10 +43,11 @@ export default function Template({ children }: { children: React.ReactNode }) {
               transformOrigin: "left center",
               transformStyle: "preserve-3d",
               transition: "background-color 0.1s 2s linear",
+              boxShadow: "box-shadow:2px 2px 4px #333333",
             }}
           ></div>
         </div>
-        <div className="relative flex flex-col w-12 pt-4 gap-5  items-start ">
+        <div className="relative -z-1 flex flex-col w-12 pt-4 gap-5  items-start ">
           <TrainsitoinLink
             label="First Page"
             href="/animations/book-pages"
