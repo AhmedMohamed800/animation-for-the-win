@@ -106,7 +106,7 @@ export const animatePageOut = (href: string, router: AppRouterInstance) => {
 
     tl.to(bookCover, {
       rotateY: 0,
-      duration: 2,
+      duration: 1,
     }).to(
       split.chars,
       {
@@ -119,7 +119,7 @@ export const animatePageOut = (href: string, router: AppRouterInstance) => {
 
         duration: 0.5,
       },
-      "-=1.3",
+      "-=0.7",
     );
   });
 };
