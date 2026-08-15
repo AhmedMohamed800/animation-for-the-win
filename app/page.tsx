@@ -122,6 +122,13 @@ export default function Home() {
         >
           Book Pages
         </Link>
+
+        <Link
+          href="/animations/draw-svg-handmade"
+          className="border border-foreground px-4 py-2 hover:opacity-90"
+        >
+          Draw Svg Handmade
+        </Link>
       </div>
     </div>
   );
