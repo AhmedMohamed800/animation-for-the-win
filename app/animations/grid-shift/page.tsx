@@ -39,16 +39,18 @@ export default function GridShift() {
       });
 
       const flipAnimation = Flip.from(state, {
-        ease: "none",
+        duration: 2,
+        ease: "expo.inOut",
+        easeReverse: "power1.out",
         stagger: {
-          amount: 0.2,
+          amount: 0.05,
         },
       });
 
       ScrollTrigger.create({
         trigger: container.current,
         start: "top top",
-        end: "+=500vh",
+        end: "+=600vh",
         scrub: true,
         animation: flipAnimation,
       });
