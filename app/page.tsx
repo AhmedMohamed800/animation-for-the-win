@@ -129,6 +129,13 @@ export default function Home() {
         >
           Draw Svg Handmade
         </Link>
+
+        <Link
+          href="/animations/grid-shift"
+          className="border border-foreground px-4 py-2 hover:opacity-90"
+        >
+          Grid Shift
+        </Link>
       </div>
     </div>
   );
