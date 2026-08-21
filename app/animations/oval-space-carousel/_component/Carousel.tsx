@@ -31,10 +31,10 @@ export default function Carousel() {
     () => {
       const items = gsap.utils.toArray(".item") as HTMLDivElement[];
 
-      const rotation = { angle: 360 };
+      const rotation = { angle: 0 };
 
       gsap.to(rotation, {
-        angle: 0,
+        angle: 360,
         duration: 50,
         repeat: -1,
         ease: "none",
@@ -44,8 +44,8 @@ export default function Carousel() {
             const { x, y } = positionElement(index, rotation.angle);
 
             gsap.set(item, {
-              top: y,
-              left: x,
+              x,
+              y,
             });
           });
         },
@@ -67,7 +67,7 @@ export default function Carousel() {
               <div
                 key={imageDataEle.id}
                 className="item absolute top-0 left-0 h-35 w-60 origin-center rotate-25"
-                style={{ top: `${y}px`, left: `${x}px` }}
+                style={{ transform: `translate(${x}, ${y})` }}
               >
                 <Image
                   src={imageDataEle.src}
