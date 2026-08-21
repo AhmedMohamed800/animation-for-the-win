@@ -136,6 +136,13 @@ export default function Home() {
         >
           Grid Shift
         </Link>
+
+        <Link
+          href="/animations/oval-space-carousel"
+          className="border border-foreground px-4 py-2 hover:opacity-90"
+        >
+          Oval Space Carousel
+        </Link>
       </div>
     </div>
   );
