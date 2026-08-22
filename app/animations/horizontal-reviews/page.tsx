@@ -203,14 +203,14 @@ export default function HorizontalReviews() {
             className="flex gap-1 px-8 items-end h-[30px]"
             ref={pointParentRef}
           >
-            {/* {Array.from({ length: pointCount }).map((_, index) => (
+            {Array.from({ length: pointCount }).map((_, index) => (
               <div
                 key={index}
                 data-index={index}
                 className="point h-3 w-1  bg-white"
                 style={{ opacity: 0.2 }}
               />
-            ))} */}
+            ))}
           </div>
           <div
             className="flex gap-8 w-[2450px] translate-x-8 lg:translate-x-100 mt-10"
