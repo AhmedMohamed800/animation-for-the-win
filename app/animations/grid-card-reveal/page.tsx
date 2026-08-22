@@ -1,7 +1,7 @@
 "use client";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import MotionPathPlugin from "gsap/MotionPathPlugin";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import MotionPathHelper from "gsap/MotionPathHelper";
@@ -180,7 +180,7 @@ export default function GrdiCardReveal() {
       return () => {
         window.removeEventListener("resize", handleResize);
         tl?.kill();
-        ScrollTrigger.killAll();
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       };
     },
     { scope: sectionContainer, dependencies: [pathname] },
@@ -192,6 +192,8 @@ export default function GrdiCardReveal() {
       normalizeScroll: true,
       smoothTouch: 0.1,
     });
+
+    console.log("hello");
 
     return () => {
       smoother.kill();

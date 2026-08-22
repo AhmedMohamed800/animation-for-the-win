@@ -28,19 +28,19 @@ export default function Home() {
           Story Timeline
         </Link>
 
-        <Link
+        <a
           href="/animations/basketball-net-scroll"
           className="border border-foreground px-4 py-2 hover:opacity-90"
         >
           Basketball Net Scroll
-        </Link>
+        </a>
 
-        <Link
+        <a
           href="/animations/scroll-image-reveal"
           className="border border-foreground px-4 py-2 hover:opacity-90"
         >
           Scroll Image Reveal
-        </Link>
+        </a>
 
         <Link
           href="/animations/vertical-scroll-drag"
@@ -56,33 +56,33 @@ export default function Home() {
           Rect Hover
         </Link>
 
-        <Link
+        <a
           href="/animations/distortion-carousel"
           className="border border-foreground px-4 py-2 hover:opacity-90"
         >
           Distortion Carousel
-        </Link>
+        </a>
 
-        <Link
+        <a
           href="/animations/scroll-columns"
           className="border border-foreground px-4 py-2 hover:opacity-90"
         >
           Scroll Columns
-        </Link>
+        </a>
 
-        <Link
+        <a
           href="/animations/scroll-horizontal-shift"
           className="border border-foreground px-4 py-2 hover:opacity-90"
         >
           scroll-horizontal-shift
-        </Link>
+        </a>
 
-        <Link
+        <a
           href="/animations/svg-moving-line"
           className="border border-foreground px-4 py-2 hover:opacity-90"
         >
           SVG Moving Line
-        </Link>
+        </a>
 
         <Link
           href="/animations/page-transition-columns"
@@ -104,18 +104,18 @@ export default function Home() {
           Draggable Hero
         </Link>
 
-        <Link
+        <a
           href="/animations/grid-card-reveal"
           className="border border-foreground px-4 py-2 hover:opacity-90"
         >
           Grid Card Reveal
-        </Link>
-        <Link
+        </a>
+        <a
           href="/animations/horizontal-reviews"
           className="border border-foreground px-4 py-2 hover:opacity-90"
         >
           Horizontal Reviews
-        </Link>
+        </a>
         <Link
           href="/animations/book-pages"
           className="border border-foreground px-4 py-2 hover:opacity-90"
@@ -130,12 +130,12 @@ export default function Home() {
           Draw Svg Handmade
         </Link>
 
-        <Link
+        <a
           href="/animations/grid-shift"
           className="border border-foreground px-4 py-2 hover:opacity-90"
         >
           Grid Shift
-        </Link>
+        </a>
 
         <Link
           href="/animations/oval-space-carousel"
