@@ -48,7 +48,10 @@ export default function BasketballNetScroll() {
       });
     });
 
-    return () => mm.revert();
+    return () => {
+      mm.revert();
+      ScrollTrigger.killAll();
+    };
   });
 
   return (

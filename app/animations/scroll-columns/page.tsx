@@ -43,7 +43,10 @@ export default function ScrollColumns() {
       .to(".item", { y: -1000 }, "<")
       .to(Header.current, { yPercent: 750, skewY: 0.4 });
 
-    return () => smoother.kill();
+    return () => {
+      smoother.kill();
+      ScrollTrigger.killAll();
+    };
   });
 
   return (

@@ -23,6 +23,7 @@ export default function GridShift() {
 
     return () => {
       smoother.kill();
+      ScrollTrigger.killAll();
     };
   });
 

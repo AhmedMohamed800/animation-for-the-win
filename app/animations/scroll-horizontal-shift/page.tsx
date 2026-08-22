@@ -94,6 +94,7 @@ export default function ScrollHorizontalShift() {
 
     return () => {
       smoother.kill();
+      ScrollTrigger.killAll();
       mm.revert();
     };
   });

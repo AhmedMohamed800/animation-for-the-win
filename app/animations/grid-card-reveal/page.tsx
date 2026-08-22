@@ -189,7 +189,10 @@ export default function GrdiCardReveal() {
       smoothTouch: 0.1,
     });
 
-    return () => smoother.kill();
+    return () => {
+      smoother.kill();
+      ScrollTrigger.killAll();
+    };
   });
 
   return (

@@ -24,6 +24,7 @@ export default function DrawSVGHandmade() {
 
     return () => {
       smoother.kill();
+      ScrollTrigger.killAll();
     };
   });
 

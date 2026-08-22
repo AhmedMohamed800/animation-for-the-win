@@ -201,7 +201,10 @@ export default function ScrollImageReveal() {
 
     tl.to(image5.current, { scale: 1.15 }, "<");
 
-    return () => smoother.kill();
+    return () => {
+      smoother.kill();
+      ScrollTrigger.killAll();
+    };
   });
 
   return (

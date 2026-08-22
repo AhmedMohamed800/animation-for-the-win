@@ -179,7 +179,10 @@ export default function HorizontalReviews() {
       "<",
     );
 
-    return () => smoother.kill();
+    return () => {
+      smoother.kill();
+      ScrollTrigger.killAll();
+    };
   });
 
   return (

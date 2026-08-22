@@ -76,6 +76,7 @@ export default function SvgMovingLine() {
       );
     return () => {
       smoother.kill();
+      ScrollTrigger.killAll();
     };
   });
 
