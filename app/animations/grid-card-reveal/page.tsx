@@ -6,6 +6,7 @@ import MotionPathPlugin from "gsap/MotionPathPlugin";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import MotionPathHelper from "gsap/MotionPathHelper";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
+import { usePathname } from "next/navigation";
 
 import Card from "./_components/Card";
 
@@ -18,6 +19,8 @@ gsap.registerPlugin(
 );
 
 export default function GrdiCardReveal() {
+  const pathname = usePathname();
+
   const cardsItems = [
     {
       id: "001",
@@ -177,9 +180,10 @@ export default function GrdiCardReveal() {
       return () => {
         window.removeEventListener("resize", handleResize);
         tl?.kill();
+        ScrollTrigger.killAll();
       };
     },
-    { scope: sectionContainer },
+    { scope: sectionContainer, dependencies: [pathname] },
   );
 
   useGSAP(() => {
@@ -191,9 +195,8 @@ export default function GrdiCardReveal() {
 
     return () => {
       smoother.kill();
-      ScrollTrigger.killAll();
     };
-  });
+  }, [pathname]);
 
   return (
     <div
